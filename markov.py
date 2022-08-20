@@ -12,10 +12,8 @@ def open_and_read_file(file_path):
     text_string = open(file_path).read()
     return text_string
 
-print(open_and_read_file('green-eggs.txt'))
-
-
-
+#print(open_and_read_file('green-eggs.txt'))
+green_eggs_test = open_and_read_file('green-eggs.txt')
 
 def make_chains(text_string):
     """Take input text as string; return dictionary of Markov chains.
@@ -41,12 +39,32 @@ def make_chains(text_string):
         >>> chains[('there','juanita')]
         [None]
     """
-
+    
     chains = {}
+    words = text_string.split()
+    words.append(None)
+    for i in range(len(words)-2):
+        keys = (words[i], words[i +1])       
+        values = words[i + 2]
+        
+        if keys not in chains:
+            chains[keys] = []
+    
+        chains[keys].append(values)
+    return chains
+print(make_chains(green_eggs_test))
 
+        
+   
+    #need to add word pairs into dictionary
+    #make a dictionary
+    #loop over words accessing word at i i+1 and i+2
+    #modify the loop so youre putting words a i and i+1 in a tuple, use tuple as dict key
+    #create a list to store value
+    #where do you make the list? check if key is in dictionary if not append
     
 
-    return chains
+    # return chains
 
 
 def make_text(chains):
