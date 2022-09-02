@@ -52,10 +52,10 @@ def make_chains(text_string):
     
         chains[keys].append(values)
     return chains
-print(make_chains(green_eggs_test))
 
-        
-   
+green_chains = make_chains(green_eggs_test)
+
+
     #need to add word pairs into dictionary
     #make a dictionary
     #loop over words accessing word at i i+1 and i+2
@@ -72,10 +72,32 @@ def make_text(chains):
 
     words = []
 
-    # your code goes here
+    #links = [[key1,key2,random value],[link2],]
 
-    return ' '.join(words)
+    
+    random_key = choice(list(chains.keys()))
+    words = [random_key[0], random_key[1]]
+    next_word = choice(chains[random_key])
+    
+    #link = random_key + next_word
+    # words = random_key
+    
+    while next_word is not None:
+        next_key = (random_key[1], next_word)
+        words.append(next_word)
+    #new_key = random_key[1] + ' ' + next_word
+    #new_keys_word = choice(chains[new_key])
+    # words.append(new_key)
+   
+    # print(words)
+    #words[1]
+    # print(words)
+ 
+   # print(random_key)
 
+   # return ' '.join(words)
+# make_text(green_chains)
+print(make_text(green_chains))
 
 input_path = 'green-eggs.txt'
 
@@ -88,4 +110,4 @@ chains = make_chains(input_text)
 # Produce random text
 random_text = make_text(chains)
 
-print(random_text)
+#print(random_text)
